@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../WMC/MyFirstProject"
+		},
+		{
+			"path": "../../WMC/Box-Model"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Box-Model"
+	}
+}
