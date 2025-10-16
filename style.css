@@ -1,0 +1,68 @@
+body {
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+}
+
+h1 {
+    color: blue;
+    padding: 25px;
+    text-align: center;
+    font-size: 40px;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 10px 10px 20px 10px;
+}
+
+.inhalt {
+    border: 1px solid gray;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+}
+
+.mein_bild {
+    width: 300px;
+    height: 300px;
+}
+
+.hans_bild {
+    max-width: 100%;
+    height: auto;
+}
+
+.hans_link {
+    text-decoration: none;
+    color:rgb(174, 0, 255)
+}
+
+.hans_link:hover {
+    text-decoration: underline;
+}
+
+.hans_motto{
+    border-radius: 10px;
+    font-size: 40px;
+    border: 3px solid black;
+    text-align: center;
+    padding: 15px;
+    font-weight: bold;
+    color: red;
+}
+
+footer {
+    border-radius: 10px;
+    background-color:aqua;
+    margin: 10px 10px 20px 10px;
+    padding: 10px;
+    border: hidden;
+    text-align: right;
+}
+
+.bottom_link {
+    text-decoration: none;
+    color: rgb(253, 63, 0);
+}
+
+.bottom_link:hover {
+    text-decoration: underline;
+}

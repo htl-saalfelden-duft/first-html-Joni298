@@ -4,6 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+      /* Smooth scrolling for in-page anchors */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Visual indication when a target is reached */
+      :target {
+        outline: 3px solid #5b58ff;
+        border-radius: 6px;
+        padding: 2px;
+        transition: outline 0.2s ease-in-out;
+      }
       #mitte {
         background-color: rgb(255, 0, 0);
         padding: 4px 10px;
@@ -21,6 +33,7 @@
       .links {
         color: blue;
         text-decoration: none;
+        scroll-behavior: smooth;
       }
 
       .links:hover {
@@ -36,6 +49,10 @@
 
       .abstand{
         margin-right: 60px;
+      }
+
+      .bild_link {
+        transition: box-shadow 0.3s;
       }
 
       .bild_link:hover{
@@ -57,7 +74,7 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
       rel="stylesheet"
     />
-    <title>Meine Website</title>
+    <title>HTML Übung</title>
   </head>
 
   <body>
@@ -173,7 +190,7 @@
       velit maiores facilis facere similique necessitatibus quod impedit sequi
       fugiat earum sunt, quisquam deleniti magnam, natus eligendi dolor maxime
       mollitia alias iste eos illum! Inventore eos sed omnis quos autem
-      sapiente, <span id="mitte"></span>itaque culpa a ducimus dolor harum
+  sapiente, <span id="mitte" tabindex="-1"></span>itaque culpa a ducimus dolor harum
       libero aliquam voluptatum fugit dolore recusandae, sint eveniet illum
       commodi ipsum? Consequuntur dolor modi repellat impedit voluptate? Odio
       cum, distinctio inventore voluptatem quasi cupiditate illo pariatur
@@ -302,7 +319,7 @@
       iure culpa ullam, quas dolore illo quasi! Beatae, aspernatur quasi.
       Quidem, cupiditate vero! Pariatur odit beatae repellendus quibusdam
       expedita in, animi magnam reprehenderit?
-      <span id="ende"></span>
+      <span id="ende" tabindex="-1"></span>
     </p>
 
     <a href="#mitte" class="links">Zur Mitte springen</a>
@@ -332,5 +349,41 @@
     </ul>
 
     <a href="index.html" class="links ende_link">Home</a>
+    <script>
+      // Sanftes Scrollen und zugänglicher Fokus für interne Anker
+      document.addEventListener('click', function (e) {
+        // Finde nächstes <a> mit Hash-Href
+        const link = e.target.closest('a[href^="#"]');
+        if (!link) return;
+        const hash = link.getAttribute('href');
+        if (!hash || hash === '#') return;
+        const target = document.querySelector(hash);
+        if (!target) return;
+
+        e.preventDefault();
+
+        // Stelle sicher, dass das Ziel programmgesteuert fokussierbar ist
+        if (!target.hasAttribute('tabindex')) {
+          target.setAttribute('tabindex', '-1');
+        }
+
+        // Zentriert und sanft scrollen
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        // Fokus setzen ohne zusätzlichen Scroll (wenn unterstützt)
+        try {
+          target.focus({ preventScroll: true });
+        } catch (err) {
+          target.focus();
+        }
+
+        // URL-Hash aktualisieren ohne weiteren Sprung
+        if (history && history.pushState) {
+          history.pushState(null, '', hash);
+        } else {
+          location.hash = hash;
+        }
+      });
+    </script>
   </body>
 </html>
